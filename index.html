@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujjwal Poudel | Personal Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #5E81AC;      /* Soft Blue */
+            --primary-light: #81A1C1;
+            --secondary: #88C0D0;    /* Teal */
+            --accent: #D08770;       /* Salmon */
+            --dark: #3B4252;        /* Dark Blue-Gray */
+            --light: #ECEFF4;        /* Light Gray */
+            --text: #2E3440;         /* Dark Gray */
+            --text-light: #4C566A;   /* Medium Gray */
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
+        .profile-pic-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        /* Floating bubbles background */
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .bubble {
+            position: absolute;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Main Content */
+        main {
+            padding: 5rem 0;
+            position: relative;
+            z-index: 2;
+            margin-top: -4rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            font-size: 2rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 4px;
+        }
+        
+        p {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .info-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        .info-card i {
+            color: var(--secondary);
+            font-size: 1.4rem;
+        }
+        
+        /* Contact Section */
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        .contact-method i {
+            font-size: 1.3rem;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(94, 129, 172, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-method a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-method a:hover {
+            color: var(--primary);
+        }
+        
+        /* Social Media Section */
+        .social-media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .social-media-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--light);
+            padding: 1.5rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .social-media-card:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(94, 129, 172, 0.2);
+        }
+        
+        .social-media-card i {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-media-card:hover i {
+            transform: scale(1.2);
+        }
+        
+        .social-media-card span {
+            font-weight: 500;
+        }
+        
+        /* Gaming Section */
+        .gaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gaming-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .gaming-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .gaming-icon {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .gaming-card:hover .gaming-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+        
+        .gaming-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+        }
+        
+        .gaming-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 4rem;
+            position: relative;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .footer-content p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .footer-content a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-content a:hover {
+            color: var(--accent);
+        }
+        
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 0 5rem;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 2rem;
+            }
+            
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            footer {
+                clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .info-grid, .social-media-grid, .gaming-grid, .ads-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-pic {
+                width: 130px;
+                height: 130px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bubbles" id="bubbles-js"></div>
+        <div class="container header-content">
+            <div class="profile-pic-container">
+                <img src="1752247801287.png" 
+                     alt="Ujjwal Poudel" 
+                     class="profile-pic animate__animated animate__fadeIn"
+                     loading="eager">
+            </div>
+            <h1 class="animate__animated animate__fadeInDown">Ujjwal Poudel</h1>
+            <p class="tagline animate__animated animate__fadeIn animate__delay-1s">Tech enthusiast & creative thinker from Nepal</p>
+            
+            <div class="social-links animate__animated animate__fadeInUp animate__delay-1s">
+                <a href="https://www.instagram.com/netherniche?igsh=MXFwbzB5aGZldWZvZA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/unseenmsgs?mibextid=ZbWKwL" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/ujjwal_ujjwal1?s=09" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.tiktok.com/@ujjwal_is_offline1?_t=ZS-8xs4dHY0Niz&_r=1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="about" class="animate__animated">
+            <h2>About Me</h2>
+            <p>Hello! I'm Ujjwal from Jhapa, Nepal. I'm passionate about technology, gaming, and connecting with interesting people. </p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-user"></i> Quick Facts</h3>
+                    <ul>
+                        <li>Name: Ujjwal Poudel</li>
+                        <li>Location: Jhapa, Nepal</li>
+                        <li>Interests: Tech, Gaming, Sports</li>
+                        <li>Personality: Friendly & Curious</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-heart"></i> My Passions</h3>
+                    <ul>
+                        <li>Exploring new technologies</li>
+                        <li>Mobile gaming</li>
+                        <li>Outdoor activities</li>
+                        <li>Learning new skills</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-lightbulb"></i> My Approach</h3>
+                    <p>I believe in enjoying the journey of learning and connecting with others who share similar interests.</p>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="contact" class="animate__animated">
+            <h2>Contact Me</h2>
+            <p>Feel free to reach out if you'd like to connect or play games together!</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-envelope"></i> Email Adress</h3>
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:ujjwalu312@gmail.com">ujjwalu312@gmail.com</a>
+                    </div>
+       
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-comment"></i> Messaging Apps</h3>
+                    <div class="contact-method">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/9702474999" target="_blank">WhatsApp</a>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fab fa-viber"></i>
+                        <a href="viber://chat?number=+9702474999" target="_blank">Viber</a>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <div class="contact-method">
+                        <i class="fas fa-home"></i>
+                        <span>Jhapa, Nepal</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" 
+                         alt="Nepal Landscape"
+                         style="width: 100%; border-radius: 10px; margin-top: 1rem;"
+                         loading="lazy">
+                </div>
+            </div>
+        </section>
+        
+        <section id="gaming" class="animate__animated">
+            <h2>Gaming Profiles</h2>
+            <p>Add me as a friend on these gaming platforms if you'd like to play together!</p>
+            
+            <div class="gaming-grid">
+                <div class="gaming-card">
+                    <img src="pubg-1-logo-svgrepo-com.svg" 
+                         alt="PUBG" 
+                         class="gaming-icon"
+                         loading="lazy">
+                    <div>
+                        <h3>PUBG Mobile</h3>
+                        <p>ID: 52103853715</p>
+                    </div>
+                </div>
+                
+              <div class="gaming-card">
+                    <img src="freefire-2-logo-svgrepo-com.svg" 
+                         alt="Free Fire" 
+                         class="gaming-icon"
+                         loading="lazy">
+                    <div>
+                        <h3>Free Fire</h3>
+                        <p>ID: 9192101760</p>
+                    </div>
+                </div>
+                
+              <div class="gaming-card">
+                    <img src="roblox-svgrepo-com.svg" 
+                         alt="Roblox" 
+                         class="gaming-icon"
+                         loading="lazy">
+                    <div>
+                        <h3>Roblox</h3>
+                        <p>ID: 9192101760</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Ujjwal Poudel. All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart" style="color: var(--accent);"></i> in Nepal</p>
+            <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+        </div>
+    </footer>
+    
+    <script>
+        // Create bubbles for header background
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles-js');
+            const bubbleCount = 20;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                
+                // Random size between 10px and 50px
+                const size = Math.random() * 40 + 10;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                // Random position
+                bubble.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 10s and 20s
+                const duration = Math.random() * 10 + 10;
+                bubble.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+        
+        // Animate sections when they come into view
+        function animateOnScroll() {
+            const sections = document.querySelectorAll('section');
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.getBoundingClientRect().top + scrollPosition;
+                const sectionOffset = sectionTop - windowHeight;
+                
+                if (scrollPosition >= sectionOffset + 100 && !section.classList.contains('visible')) {
+                    // Add different animations based on section position
+                    if (index % 2 === 0) {
+                        section.classList.add('animate__fadeInLeft');
+                    } else {
+                        section.classList.add('animate__fadeInRight');
+                    }
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // Back to top button
+        function setupBackToTop() {
+            const backToTop = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.style.display = 'flex';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+            
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Set current year in footer
+        function setCurrentYear() {
+            document.getElementById('year').textContent = new Date().getFullYear();
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createBubbles();
+            setupBackToTop();
+            setCurrentYear();
+            
+            // Initial check for visible sections
+            animateOnScroll();
+            
+            // Check for sections coming into view on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+           // Prevent right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Prevent F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+    (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+    (e.ctrlKey && e.key === 'U')
+  ) {
+    e.preventDefault();
+  }
+});
+
+// Add transparent overlay to images
+document.querySelectorAll('img').forEach(img => {
+  img.style.pointerEvents = 'none';
+  img.style.userSelect = 'none';
+});
+    </script>
+</body>
+</html>
